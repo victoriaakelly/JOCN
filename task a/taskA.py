@@ -14,9 +14,8 @@ subjDlg.addField('Enter Subject ID: ')
 subjDlg.show()
 subj_id=subjDlg.data[0]
 
-# Quits if participant did not enter name
-if len(subj_id)<1:
-    sys.exit()
+if len(subj_id)<1: # Make sure participant entered name
+    core.quit()
 
 # Initialzing Window 
 win = visual.Window(fullscr=False, size=[1100, 800], units='pix', monitor='testMonitor')
@@ -76,12 +75,13 @@ for image in imageList:
     win.flip()
     core.wait(0.35)  # brief pause, slightly smoother for the subject
 
-thank_you_screen.draw()
-win.flip()
-core.wait(1.5)
-
 # Write to .csv file with participants name, subj_id, in file name
 f=open( subj_id + ' task a results.csv','w')
 for i in range(0,len(imageList)):
     f.write(imageList[i]+","+responses[i]+"\n")
 f.close()
+
+# Thank participant
+thank_you_screen.draw()
+win.flip()
+core.wait(1.5)
