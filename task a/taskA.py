@@ -74,6 +74,7 @@ for image in imageList:
 
 thank_you_screen.draw()
 win.flip()
+core.wait(1.5)
 
 # Write to .csv file with participants name, subj_id, in file name
 f=open( subj_id + ' task a results.csv','w')
