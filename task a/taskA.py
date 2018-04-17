@@ -1,4 +1,5 @@
 from psychopy import os, visual, core, event, gui, data, sound, logging
+import sys
 import os
 import csv
 import datetime
@@ -11,8 +12,11 @@ directory = os.getcwd()
 subjDlg=gui.Dlg(title="JOCN paper- rate items")
 subjDlg.addField('Enter Subject ID: ')
 subjDlg.show()
-subj_id = subjDlg.data[0]
+subj_id=subjDlg.data[0]
 
+# Quits if participant did not enter name
+if len(subj_id)<1:
+    sys.exit()
 
 # Initialzing Window 
 win = visual.Window(fullscr=False, size=[1100, 800], units='pix', monitor='testMonitor')
