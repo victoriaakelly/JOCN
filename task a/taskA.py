@@ -59,21 +59,21 @@ for image in imageList:
     myItem = visual.ImageStim(win=win, image=image, units='pix', pos=[0, y//7], size = [500,450])
 
     # rate each image on one dimension
-    #for dimension in ['0=Little to no prefernce. . . 50=Very high preference']:
-    myRatingScale.reset()  # reset between repeated uses of the same scale
-    event.clearEvents()
-    while myRatingScale.noResponse:
-        myItem.draw()
-        myRatingScale.draw()
-        win.flip()
-        if event.getKeys(['escape']): 
-            core.quit()
-            # assigns response to corresponding image
-    responses[imageList.index(image)] = myRatingScale.getRating() 
+    for dimension in ['0=Little to no prefernce. . . 50=Very high preference']:
+        myRatingScale.reset()  # reset between repeated uses of the same scale
+        event.clearEvents()
+        while myRatingScale.noResponse:
+            myItem.draw()
+            myRatingScale.draw()
+            win.flip()
+            if event.getKeys(['escape']): 
+                core.quit()
+                # assigns response to corresponding image
+        responses[imageList.index(image)] = myRatingScale.getRating() 
 
-        # clear the screen & pause between ratings
-    win.flip()
-    core.wait(0.35)  # brief pause, slightly smoother for the subject
+            # clear the screen & pause between ratings
+        win.flip()
+        core.wait(0.35)  # brief pause, slightly smoother for the subject
 
 # Write to .csv file with participants name, subj_id, in file name
 f=open( subj_id + ' task a results.csv','w')
